@@ -1,16 +1,16 @@
 
-#include "time_logger.h"
+#include "lap_logger.h"
 #include <iomanip>
 #include <sstream>
 
 namespace pandora {
 
-    TimeLogger::TimeLogger(bool enableModule)
+    LapLogger::LapLogger(bool enableModule)
         : bEnable(enableModule)
         , mTimeSum(0)
     {}
 
-    void TimeLogger::Reset()
+    void LapLogger::Reset()
     {
         if (!bEnable) return;
         for (auto & it: ptimes)
@@ -20,13 +20,13 @@ namespace pandora {
         mTimeSum = 0;
     }
 
-    void TimeLogger::Start()
+    void LapLogger::Start()
     {
         if (!bEnable) return;
         watch.Stop();
     }
 
-    void TimeLogger::operator() (const std::string& item, bool resetTime)
+    void LapLogger::operator() (const std::string& item, bool resetTime)
     {
         if (!bEnable) return;
         double etime = watch.Stop();
@@ -45,17 +45,17 @@ namespace pandora {
         mTimeSum += etime;
     }
 
-    double TimeLogger::GetTime(const std::string& item) const
+    double LapLogger::GetTime(const std::string& item) const
     {
         return ptimes.at(item);
     }
 
-    double TimeLogger::GetTotalTime() const
+    double LapLogger::GetTotalTime() const
     {
         return mTimeSum;
     }
 
-    std::string TimeLogger::ShowResult(int type) const
+    std::string LapLogger::ShowResult(int type) const
     {
         if (!bEnable) return "";
 
@@ -71,13 +71,13 @@ namespace pandora {
         std::string unit;
         switch (type)
         {
-        case TIME_LOGGER_MICROSECOND:
+        case LAP_LOGGER_MICROSECOND:
             unit = std::string("[us]");
             break;
-        case TIME_LOGGER_MILLISECOND:
+        case LAP_LOGGER_MILLISECOND:
             unit = std::string("[ms]");
             break;
-        case TIME_LOGGER_SECOND:
+        case LAP_LOGGER_SECOND:
             unit = std::string("[ s]");
             break;
         }
@@ -97,13 +97,13 @@ namespace pandora {
             double etime = static_cast<double>(it.second);
             switch (type)
             {
-            case TIME_LOGGER_MICROSECOND:
+            case LAP_LOGGER_MICROSECOND:
                 etime *= 1000000;
                 break;
-            case TIME_LOGGER_MILLISECOND:
+            case LAP_LOGGER_MILLISECOND:
                 etime *= 1000;
                 break;
-            case TIME_LOGGER_SECOND:
+            case LAP_LOGGER_SECOND:
                 break;
             }
 

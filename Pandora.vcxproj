@@ -127,11 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\lap_logger.h" />
     <ClInclude Include="src\stop_watch.h" />
-    <ClInclude Include="src\time_logger.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\time_logger.cpp" />
+    <ClCompile Include="src\lap_logger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
