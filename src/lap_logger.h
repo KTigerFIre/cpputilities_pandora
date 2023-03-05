@@ -12,9 +12,9 @@ namespace pandora
     public:
         LapLogger(bool enableModule = false);
 
-        static const int LAP_LOGGER_MICROSECOND = 0;
-        static const int LAP_LOGGER_MILLISECOND = 1;
-        static const int LAP_LOGGER_SECOND = 2;
+        static const int LAP_LOGGER_MICROSECOND = 1000000;
+        static const int LAP_LOGGER_MILLISECOND = 1000;
+        static const int LAP_LOGGER_SECOND = 1;
 
         bool bEnable;
         void operator() (const std::string& item, bool resetTime = true);

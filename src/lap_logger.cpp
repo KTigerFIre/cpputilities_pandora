@@ -94,22 +94,11 @@ namespace pandora {
         // write down on screen
         for (const auto& it : ptimes)
         {
-            double etime = static_cast<double>(it.second);
-            switch (type)
-            {
-            case LAP_LOGGER_MICROSECOND:
-                etime *= 1000000;
-                break;
-            case LAP_LOGGER_MILLISECOND:
-                etime *= 1000;
-                break;
-            case LAP_LOGGER_SECOND:
-                break;
-            }
+            double etime = static_cast<double>(it.second) * type;
 
             output << std::left << std::setw(maxStringLength) << it.first << std::fixed << std::setprecision(4) 
                 << std::setw(10) << etime << " " << unit << std::endl;
-            sum_of_time += it.second;
+            sum_of_time += etime;
         }
 
         output << std::setfill('-') << std::setw(maxFieldWidth) << "-" << std::endl;
